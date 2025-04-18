@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎂 Feliz Cumpleaños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Handlee', cursive;
+      overflow: hidden;
+      background-color: #f3f0e7;
+    }
+    .book {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      perspective: 2000px;
+    }
+    .page {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      top: 5%;
+      left: 5%;
+      background: #fff;
+      border: 10px solid #c2b280;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      transform-origin: left;
+      transition: transform 1s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-size: cover;
+    }
+    .page img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .message {
+      margin: 20px;
+      font-size: 1.4rem;
+      text-align: center;
+      color: #5a3e36;
+    }
+    .type {
+      animation: type 3s steps(40, end);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    @keyframes type {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: gold;
+      border-radius: 50%;
+      box-shadow: 0 0 10px gold;
+      animation: sparkle 1.5s infinite ease-in-out;
+    }
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.5); opacity: 1; }
+    }
+    .page.flipped {
+      transform: rotateY(-180deg);
+    }
+    .book .page:nth-child(1) { z-index: 5; }
+    .book .page:nth-child(2) { z-index: 4; }
+    .book .page:nth-child(3) { z-index: 3; }
+    .book .page:nth-child(4) { z-index: 2; }
+    .book .page:nth-child(5) { z-index: 1; }
+
+    .next-btn, .restart-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #f6c3d0;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #f6c3d0;
+    }
+
+    .final {
+      background: linear-gradient(to bottom, #ffe4ec, #fff);
+      background-image: url('decoracion.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .page.final .message {
+  font-weight: bold;
+  color: #f3f0e7;
+}
+    .gift {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #f3f0e7;
+      z-index: 10;
+    }
+    .gift img {
+      width: 150px;
+      cursor: pointer;
+      width: 250px;
+      transition: transform 0.3s;
+    }
+    .gift img:hover {
+      transform: scale(1.1);
+    }
+    .gift p {
+      font-size: 1.5rem;
+      color: #5a3e36;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="aud.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="gift" id="giftBox">
+    <img src="regalo.png" alt="Regalo" onclick="openGift()">
+    <p>Abre tu regalo 🎁</p>
+  </div>
+
+  <div class="book" id="bookContent" style="display:none;">
+    <div class="page" id="page1">
+      <img src="img.gif" height="300" width="350" alt="Imagen 1">
+      <p class="message type">Hoy celebramos la existencia de alguien verdaderamente especial 💖</p>
+      <p class="message type">No solo porque es su cumpleaños, sino porque su sola presencia</p>
+      <p class="message type">ilumina la vida de quienes la rodean.</p>
+      <p class="message type"> Te mereces todo el amor, la felicidad y los abrazos del universo. 🌸</p>     
+      <button class="next-btn" onclick="nextPage(1)">Siguiente</button>
+    </div>
+    <div class="page" id="page2">
+      <img src="img2.jpg" height="300" width="350" alt="Imagen 2">
+      <p class="message type">Tu dedicación, tu entrega y tu capacidad de seguir adelante</p>
+      <p class="message type">son dignas de aplausos✨</p>
+      <p class="message type">Que la vida te devuelva cada esfuerzo con alegría, </p>
+      <p class="message type">y cada lágrima con bendiciones💪❤️</p>
+      <button class="next-btn" onclick="nextPage(2)">Siguiente</button>
+    </div>
+    <div class="page" id="page3">
+      <img src="yusi.gif"  height="300" width="250" alt="Imagen 3">
+      <p class="message type">Como madre eres un verdadero ejemplo de amor y valentía💕</p>
+      <p class="message type">Sin duda Kiarita tiene la fortuna de tener a una mamá </p>
+      <p class="message type">que lucha día a día para darle lo mejor❤️</p>
+      <p class="message type">Que el destino siempre las mantenga juntas, felices y rodeadas de amor. 🌈👩‍👧💕</p>
+      <button class="next-btn" onclick="nextPage(3)">Siguiente</button>
+    </div>
+    <div class="page final" id="page4">
+       <img src="cumpleaños2.gif"  height="200" width="200" alt="Imagen 3">
+      <p class="message type">¡Feliz Cumpleaños Yusi !!! 🎂 Que tu vida se llene </p>
+      <p class="message type">de amor, sueños y magia ✨ Hoy se vale todo🤭</p>
+      <p class="message type">Que este nuevo año venga con muchas sorpresas lindas… 😄🎈</p>
+      <button class="restart-btn" onclick="restartBook()">Volver al inicio</button>
+    </div>
+  </div>
+
+  <script>
+  function openGift() {
+  document.getElementById('giftBox').style.display = 'none';
+  document.getElementById('bookContent').style.display = 'block';
+
+  // Iniciar la música después del clic
+  const music = document.getElementById('bgMusic');
+  music.play().catch(error => {
+    console.log("El navegador bloqueó el autoplay:", error);
+  });
+  createSparks();
+}
+
+    
+    function nextPage(num) {
+      const page = document.getElementById(`page${num}`);
+      page.classList.add('flipped');
+    }
+
+    function restartBook() {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('flipped'));
+      document.getElementById('bookContent').style.display = 'none';
+      document.getElementById('giftBox').style.display = 'flex';
+    }
+
+    function createSparks() {
+      for (let i = 0; i < 50; i++) {
+        const spark = document.createElement('div');
+        spark.classList.add('sparkle');
+        spark.style.left = Math.random() * 100 + 'vw';
+        spark.style.top = Math.random() * 100 + 'vh';
+        spark.style.animationDelay = (Math.random() * 2) + 's';
+        document.body.appendChild(spark);
+      }
+    }
+  </script>
+</body>
+</html>
